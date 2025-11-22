@@ -1,0 +1,206 @@
+:root {
+  --bg-app: #0b0d14;
+  --bg-panel: #13161f;
+  --bg-card: #1c212e;
+  --bg-hover: #252b3b;
+
+  --primary: #00ff9d;
+  --primary-dim: rgba(0, 255, 157, 0.1);
+  --primary-glow: 0 0 10px rgba(0, 255, 157, 0.3);
+
+  --secondary: #00f3ff;
+
+  --text-main: #e0e6ed;
+  --text-muted: #8b9bb4;
+
+  --border-color: #2d3446;
+
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d3446;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3e4760;
+}
+
+/* Utilities */
+.glass-panel {
+  background: rgba(19, 22, 31, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Components */
+.sidebar-op-item {
+  padding: 8px 15px 8px 25px;
+  cursor: grab;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  color: var(--text-main);
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.sidebar-op-item:hover {
+  background-color: var(--bg-hover);
+  color: var(--primary);
+  padding-left: 28px;
+  /* Subtle movement */
+}
+
+.cyber-button {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cyber-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  transform: translateY(-1px);
+}
+
+.cyber-button.primary {
+  background: var(--primary-dim);
+  color: var(--primary);
+  border: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+.cyber-button.primary:hover {
+  background: rgba(0, 255, 157, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
+}
+
+.cyber-button.secondary {
+  /* Default style is already secondary-like */
+}
+
+input[type="text"],
+textarea {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 1px var(--primary-dim);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Responsive Layout */
+.app-main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar-container {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  background-color: var(--bg-panel);
+  font-size: 0.9rem;
+}
+
+.recipe-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  background-color: var(--bg-app);
+  min-width: 0;
+}
+
+.io-container {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-panel);
+  border-left: 1px solid var(--border-color);
+}
+
+@media (max-width: 900px) {
+  .app-main {
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .sidebar-container {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .recipe-container {
+    width: 100%;
+    height: auto;
+    min-height: 350px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    flex: none;
+  }
+
+  .io-container {
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+    border-left: none;
+    flex: none;
+  }
+}
